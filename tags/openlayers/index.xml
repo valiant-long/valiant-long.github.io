@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>valiant的个人博客</title>
-    <link>http://localhost:1313/</link>
-    <description>Recent content on valiant的个人博客</description>
+    <title>openlayers on valiant的个人博客</title>
+    <link>http://localhost:1313/tags/openlayers/</link>
+    <description>Recent content in openlayers on valiant的个人博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Wed, 22 Mar 2023 10:34:33 +0800</lastBuildDate><atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 22 Mar 2023 10:34:33 +0800</lastBuildDate><atom:link href="http://localhost:1313/tags/openlayers/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>openlayers系列之vue引入</title>
       <link>http://localhost:1313/post/%E6%B5%8B%E8%AF%95/</link>
