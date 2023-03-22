@@ -26,16 +26,16 @@
 <meta name="generator" content="Hugo 0.111.3 with theme even" />
 
 
-<link rel="canonical" href="http://localhost:1313/" />
-  <link href="http://localhost:1313/index.xml" rel="alternate" type="application/rss+xml" title="valiant的个人博客" />
-  <link href="http://localhost:1313/index.xml" rel="feed" type="application/rss+xml" title="valiant的个人博客" />
+<link rel="canonical" href="https://valiant-long.github.io/" />
+  <link href="https://valiant-long.github.io/index.xml" rel="alternate" type="application/rss+xml" title="valiant的个人博客" />
+  <link href="https://valiant-long.github.io/index.xml" rel="feed" type="application/rss+xml" title="valiant的个人博客" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 <link rel="manifest" href="/manifest.json">
 <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
 
-
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 <link href="/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
@@ -44,7 +44,7 @@
 <meta property="og:title" content="valiant的个人博客" />
 <meta property="og:description" content="Hugo theme even example site." />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="http://localhost:1313/" />
+<meta property="og:url" content="https://valiant-long.github.io/" />
 <meta itemprop="name" content="valiant的个人博客">
 <meta itemprop="description" content="Hugo theme even example site."><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="valiant的个人博客"/>
@@ -121,13 +121,34 @@
           <section id="posts" class="posts">
     <article class="post">
   <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/post/%E6%B5%8B%E8%AF%95/">openlayers系列之vue引入</a></h1>
+    <h1 class="post-title"><a class="post-link" href="/post/openlayers/mark/">Openlayers系列之绘制标记</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2023-03-22 </span>
+      
+        <span class="more-meta"> 约 527 字 </span>
+        <span class="more-meta"> 预计阅读 2 分钟 </span>
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      前言 记上一篇文章[openlayers系列之vue引入] 按需引入依赖 1 2 3 4 5 import { Point } from &#34;ol/geom&#34;; import { Feature } from &#34;ol&#34;; import { Style,Icon} from &#34;ol/style&#34;; import VectorLayer from &#34;ol/layer/Vector&#34;; import { Vector as VectorSource } from &#34;ol/source&#34;; 创建
+    </div>
+    <div class="read-more">
+      <a href="/post/openlayers/mark/" class="read-more-link">阅读更多</a>
+    </div>
+  </div>
+</article>
+
+    <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/post/openlayers/map/">openlayers系列之vue引入</a></h1>
     <div class="post-meta">
       <span class="post-time"> 2023-03-22 </span>
       <div class="post-category">
           <a href="/categories//">  </a>
           </div>
-        <span class="more-meta"> 约 169 字 </span>
+        <span class="more-meta"> 约 360 字 </span>
         <span class="more-meta"> 预计阅读 1 分钟 </span>
     </div>
   </header>
@@ -137,7 +158,7 @@
       前提配置 假设你已经初始化vue项目 1 npm install ol 创建容器，记得设置宽高 1 &lt;div id=&#34;map&#34;&gt;&lt;/div&gt; 按需引入openlayers 1 2 3 4 5 import Map from&#39;ol/Map&#39;; import View from &#39;ol/View&#39;; import XYZ from &#39;ol/source/XYZ&#39;; import { Tile as TileLayer}
     </div>
     <div class="read-more">
-      <a href="/post/%E6%B5%8B%E8%AF%95/" class="read-more-link">阅读更多</a>
+      <a href="/post/openlayers/map/" class="read-more-link">阅读更多</a>
     </div>
   </div>
 </article>
@@ -156,7 +177,7 @@
 
     <footer id="footer" class="footer">
       <div class="social-links">
-  <a href="http://localhost:1313/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+  <a href="https://valiant-long.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
 </div>
 
 <div class="copyright">
@@ -169,7 +190,11 @@
     <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
   </span>
 
-  
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
 
   <span class="copyright-year">
     &copy; 
