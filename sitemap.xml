@@ -2,6 +2,27 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://valiant-long.github.io/post/openlayers/line/</loc>
+    <lastmod>2023-03-27T15:36:41+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://valiant-long.github.io/post/</loc>
+    <lastmod>2023-03-27T15:36:41+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://valiant-long.github.io/</loc>
+    <lastmod>2023-03-27T15:36:41+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://valiant-long.github.io/tags/openlayers/</loc>
     <lastmod>2023-03-22T16:23:32+08:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -16,21 +37,7 @@
   </url>
   
   <url>
-    <loc>https://valiant-long.github.io/post/</loc>
-    <lastmod>2023-03-22T16:23:32+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>https://valiant-long.github.io/tags/</loc>
-    <lastmod>2023-03-22T16:23:32+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://valiant-long.github.io/</loc>
     <lastmod>2023-03-22T16:23:32+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>

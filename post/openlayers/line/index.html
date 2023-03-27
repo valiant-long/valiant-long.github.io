@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>Openlayers系列之绘制标记 - valiant的个人博客</title>
+  <title>openlayers系列之绘制线 - valiant的个人博客</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="valiant" /><meta name="description" content="前言 记上一篇文章[openlayers系列之vue引入] 按需引入依赖 1 2 3 4 5 import { Point } from &amp;#34;ol/geom&amp;#34;; import { Feature } from &amp;#34;ol&amp;#34;; import { Style,Icon} from &amp;#34;ol/style&amp;#34;; import VectorLayer from &amp;#34;ol/layer/Vector&amp;#34;; import { Vector as VectorSource } from &amp;#34;ol/source&amp;#34;; 创建" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="valiant" /><meta name="description" content="前言 记上一篇文章[openlayers系列之绘制标记] 按需引入依赖 1 2 import { Point,LineString } from &amp;#34;ol/geom&amp;#34;; import { Style, Icon ,Stroke} from &amp;#34;ol/style&amp;#34;; 创建线 需要对应线的数据 1 let lineData = [[113.56762000, 34.82407000], [113.56763000, 34.82408000], [113.56764000, 34.82409000], [113.56765000," /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
@@ -26,7 +26,7 @@
 <meta name="generator" content="Hugo 0.111.3 with theme even" />
 
 
-<link rel="canonical" href="https://valiant-long.github.io/post/openlayers/mark/" />
+<link rel="canonical" href="https://valiant-long.github.io/post/openlayers/line/" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -39,19 +39,19 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
-<meta property="og:title" content="Openlayers系列之绘制标记" />
-<meta property="og:description" content="前言 记上一篇文章[openlayers系列之vue引入] 按需引入依赖 1 2 3 4 5 import { Point } from &#34;ol/geom&#34;; import { Feature } from &#34;ol&#34;; import { Style,Icon} from &#34;ol/style&#34;; import VectorLayer from &#34;ol/layer/Vector&#34;; import { Vector as VectorSource } from &#34;ol/source&#34;; 创建" />
+<meta property="og:title" content="openlayers系列之绘制线" />
+<meta property="og:description" content="前言 记上一篇文章[openlayers系列之绘制标记] 按需引入依赖 1 2 import { Point,LineString } from &#34;ol/geom&#34;; import { Style, Icon ,Stroke} from &#34;ol/style&#34;; 创建线 需要对应线的数据 1 let lineData = [[113.56762000, 34.82407000], [113.56763000, 34.82408000], [113.56764000, 34.82409000], [113.56765000," />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://valiant-long.github.io/post/openlayers/mark/" /><meta property="article:section" content="post" />
-<meta property="article:published_time" content="2023-03-22T16:23:32+08:00" />
-<meta property="article:modified_time" content="2023-03-22T16:23:32+08:00" />
-<meta itemprop="name" content="Openlayers系列之绘制标记">
-<meta itemprop="description" content="前言 记上一篇文章[openlayers系列之vue引入] 按需引入依赖 1 2 3 4 5 import { Point } from &#34;ol/geom&#34;; import { Feature } from &#34;ol&#34;; import { Style,Icon} from &#34;ol/style&#34;; import VectorLayer from &#34;ol/layer/Vector&#34;; import { Vector as VectorSource } from &#34;ol/source&#34;; 创建"><meta itemprop="datePublished" content="2023-03-22T16:23:32+08:00" />
-<meta itemprop="dateModified" content="2023-03-22T16:23:32+08:00" />
-<meta itemprop="wordCount" content="527">
-<meta itemprop="keywords" content="openlayers," /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Openlayers系列之绘制标记"/>
-<meta name="twitter:description" content="前言 记上一篇文章[openlayers系列之vue引入] 按需引入依赖 1 2 3 4 5 import { Point } from &#34;ol/geom&#34;; import { Feature } from &#34;ol&#34;; import { Style,Icon} from &#34;ol/style&#34;; import VectorLayer from &#34;ol/layer/Vector&#34;; import { Vector as VectorSource } from &#34;ol/source&#34;; 创建"/>
+<meta property="og:url" content="https://valiant-long.github.io/post/openlayers/line/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2023-03-27T15:36:41+08:00" />
+<meta property="article:modified_time" content="2023-03-27T15:36:41+08:00" />
+<meta itemprop="name" content="openlayers系列之绘制线">
+<meta itemprop="description" content="前言 记上一篇文章[openlayers系列之绘制标记] 按需引入依赖 1 2 import { Point,LineString } from &#34;ol/geom&#34;; import { Style, Icon ,Stroke} from &#34;ol/style&#34;; 创建线 需要对应线的数据 1 let lineData = [[113.56762000, 34.82407000], [113.56763000, 34.82408000], [113.56764000, 34.82409000], [113.56765000,"><meta itemprop="datePublished" content="2023-03-27T15:36:41+08:00" />
+<meta itemprop="dateModified" content="2023-03-27T15:36:41+08:00" />
+<meta itemprop="wordCount" content="785">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="openlayers系列之绘制线"/>
+<meta name="twitter:description" content="前言 记上一篇文章[openlayers系列之绘制标记] 按需引入依赖 1 2 import { Point,LineString } from &#34;ol/geom&#34;; import { Style, Icon ,Stroke} from &#34;ol/style&#34;; 创建线 需要对应线的数据 1 let lineData = [[113.56762000, 34.82407000], [113.56763000, 34.82408000], [113.56764000, 34.82409000], [113.56765000,"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -124,12 +124,12 @@
           <article class="post">
     
     <header class="post-header">
-      <h1 class="post-title">Openlayers系列之绘制标记</h1>
+      <h1 class="post-title">openlayers系列之绘制线</h1>
 
       <div class="post-meta">
-        <span class="post-time"> 2023-03-22 </span>
+        <span class="post-time"> 2023-03-27 </span>
         
-          <span class="more-meta"> 约 527 字 </span>
+          <span class="more-meta"> 约 785 字 </span>
           <span class="more-meta"> 预计阅读 2 分钟 </span>
         <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
       </div>
@@ -145,9 +145,8 @@
         <li>
           <ul>
             <li><a href="#按需引入依赖">按需引入依赖</a></li>
-            <li><a href="#创建点位">创建点位</a></li>
-            <li><a href="#引入图片创建点位">引入图片创建点位</a></li>
-            <li><a href="#以下是整体代码">以下是整体代码</a></li>
+            <li><a href="#创建线">创建线</a></li>
+            <li><a href="#整体代码如下">整体代码如下</a></li>
           </ul>
         </li>
       </ul>
@@ -158,25 +157,65 @@
 </div>
     <div class="post-content">
       <h1 id="前言">前言</h1>
-<p>记上一篇文章<a href="/post/openlayers/map/">[openlayers系列之vue引入]</a></p>
+<p>记上一篇文章[<a href="/post/openlayers/mark/">openlayers系列之绘制标记</a>]</p>
 <h3 id="按需引入依赖">按需引入依赖</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">import { Point,LineString  } from &#34;ol/geom&#34;;
+</span></span><span class="line"><span class="cl">import { Style, Icon ,Stroke} from &#34;ol/style&#34;;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="创建线">创建线</h3>
+<ol>
+<li>需要对应线的数据</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">let lineData = [[113.56762000, 34.82407000], [113.56763000, 34.82408000], [113.56764000, 34.82409000], [113.56765000, 34.82410000]]
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="2">
+<li>因为openlayers用的是EPSG:3857 需要转换坐标</li>
+</ol>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
-</span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">import { Point } from &#34;ol/geom&#34;;
-</span></span><span class="line"><span class="cl">import { Feature } from &#34;ol&#34;;
-</span></span><span class="line"><span class="cl">import { Style,Icon} from &#34;ol/style&#34;;
-</span></span><span class="line"><span class="cl">import VectorLayer from &#34;ol/layer/Vector&#34;;
-</span></span><span class="line"><span class="cl">import { Vector as VectorSource } from &#34;ol/source&#34;;
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">let newlineData = []
+</span></span><span class="line"><span class="cl">lineData.forEach(el =&gt; {
+</span></span><span class="line"><span class="cl">                newlineData.push(fromLonLat(el))
+</span></span><span class="line"><span class="cl">            })
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="创建点位">创建点位</h3>
+</div><ol start="3">
+<li>创建feature</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl"> let lineFeature = new Feature({
+</span></span><span class="line"><span class="cl">                geometry: new LineString(newlineData)
+</span></span><span class="line"><span class="cl">            })
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="4">
+<li>设置线的样式</li>
+</ol>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -187,21 +226,62 @@
 </span><span class="lnt">6
 </span><span class="lnt">7
 </span><span class="lnt">8
+</span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl"> let feature = new Feature({geometry: new Point(fromLonLat([113.56762000, 34.82407000]))})
-</span></span><span class="line"><span class="cl"> let mark = new VectorLayer({
-</span></span><span class="line"><span class="cl">                source: new VectorSource({
-</span></span><span class="line"><span class="cl">                    features: [feature]
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl"> let color = &#39;green&#39;;
+</span></span><span class="line"><span class="cl">            let lineStyle = new Style({
+</span></span><span class="line"><span class="cl">                stroke: new Stroke({
+</span></span><span class="line"><span class="cl">                    color: color,
+</span></span><span class="line"><span class="cl">                    width: 4,
 </span></span><span class="line"><span class="cl">                }),
-</span></span><span class="line"><span class="cl">              
-</span></span><span class="line"><span class="cl">            })
-</span></span><span class="line"><span class="cl">  this.map.addLayer(mark)
+</span></span><span class="line"><span class="cl">            });
+</span></span><span class="line"><span class="cl">            // 添加线的样式
+</span></span><span class="line"><span class="cl">            lineFeature.setStyle(lineStyle);
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>初始化地图后，引入点位</p>
-<p><img src="/img/2.jpg" alt=""></p>
-<h3 id="引入图片创建点位">引入图片创建点位</h3>
+</div><ol start="5">
+<li>创建source</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl"> let lineSource = new VectorSource({
+</span></span><span class="line"><span class="cl">                features: [lineFeature]
+</span></span><span class="line"><span class="cl">            })
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="6">
+<li>创建layer</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl"> let lineLayer = new VectorLayer({
+</span></span><span class="line"><span class="cl">                source: lineSource
+</span></span><span class="line"><span class="cl">            })
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="7">
+<li>加入地图</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">this.map.addLayer(lineLayer);
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="具体方法">具体方法</h4>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -226,35 +306,49 @@
 </span><span class="lnt">20
 </span><span class="lnt">21
 </span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">  const iconFeature = new Feature({
-</span></span><span class="line"><span class="cl">                geometry: new Point(fromLonLat([113.56762000, 34.82407000])),
-</span></span><span class="line"><span class="cl">            });
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl"> addLine() {
+</span></span><span class="line"><span class="cl">            let lineData = [[113.56762000, 34.82407000], [113.56763000, 34.82408000], [113.56764000, 34.82409000], [113.56765000, 34.82410000]]
+</span></span><span class="line"><span class="cl">            let newlineData = []
+</span></span><span class="line"><span class="cl">            lineData.forEach(el =&gt; {
+</span></span><span class="line"><span class="cl">                newlineData.push(fromLonLat(el))
+</span></span><span class="line"><span class="cl">            })
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">            const iconStyle = new Style({
-</span></span><span class="line"><span class="cl">                image: new Icon({
-</span></span><span class="line"><span class="cl">                    anchor: [0.5, 46],
-</span></span><span class="line"><span class="cl">                    anchorXUnits: &#34;fraction&#34;,
-</span></span><span class="line"><span class="cl">                    anchorYUnits: &#34;pixels&#34;,
-</span></span><span class="line"><span class="cl">                    src: require(&#34;@/assets/marker-icon.png&#34;),
+</span></span><span class="line"><span class="cl">            let lineFeature = new Feature({
+</span></span><span class="line"><span class="cl">                geometry: new LineString(newlineData)
+</span></span><span class="line"><span class="cl">            })
+</span></span><span class="line"><span class="cl">            let color = &#39;green&#39;;
+</span></span><span class="line"><span class="cl">            let lineStyle = new Style({
+</span></span><span class="line"><span class="cl">                stroke: new Stroke({
+</span></span><span class="line"><span class="cl">                    color: color,
+</span></span><span class="line"><span class="cl">                    width: 4,
 </span></span><span class="line"><span class="cl">                }),
 </span></span><span class="line"><span class="cl">            });
+</span></span><span class="line"><span class="cl">            // 添加线的样式
+</span></span><span class="line"><span class="cl">            lineFeature.setStyle(lineStyle);
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">            iconFeature.setStyle(iconStyle);
+</span></span><span class="line"><span class="cl">            let lineSource = new VectorSource({
+</span></span><span class="line"><span class="cl">                features: [lineFeature]
+</span></span><span class="line"><span class="cl">            })
+</span></span><span class="line"><span class="cl">            let lineLayer = new VectorLayer({
+</span></span><span class="line"><span class="cl">                source: lineSource
+</span></span><span class="line"><span class="cl">            })
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">            let pointLayer = new VectorLayer({
-</span></span><span class="line"><span class="cl">                source: new VectorSource({
-</span></span><span class="line"><span class="cl">                    features: [iconFeature],
-</span></span><span class="line"><span class="cl">                }),
-</span></span><span class="line"><span class="cl">            });
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">            this.map.addLayer(pointLayer);
+</span></span><span class="line"><span class="cl">            this.map.addLayer(lineLayer);
+</span></span><span class="line"><span class="cl">        }
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>如下图</p>
-<p><img src="/img/3.jpg" alt=""></p>
-<h3 id="以下是整体代码">以下是整体代码</h3>
+</div><h4 id="实现效果">实现效果</h4>
+<p><img src="/img/4.jpg" alt=""></p>
+<h3 id="整体代码如下">整体代码如下</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">  1
@@ -357,6 +451,37 @@
 </span><span class="lnt"> 98
 </span><span class="lnt"> 99
 </span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span><span class="lnt">105
+</span><span class="lnt">106
+</span><span class="lnt">107
+</span><span class="lnt">108
+</span><span class="lnt">109
+</span><span class="lnt">110
+</span><span class="lnt">111
+</span><span class="lnt">112
+</span><span class="lnt">113
+</span><span class="lnt">114
+</span><span class="lnt">115
+</span><span class="lnt">116
+</span><span class="lnt">117
+</span><span class="lnt">118
+</span><span class="lnt">119
+</span><span class="lnt">120
+</span><span class="lnt">121
+</span><span class="lnt">122
+</span><span class="lnt">123
+</span><span class="lnt">124
+</span><span class="lnt">125
+</span><span class="lnt">126
+</span><span class="lnt">127
+</span><span class="lnt">128
+</span><span class="lnt">129
+</span><span class="lnt">130
+</span><span class="lnt">131
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;template&gt;
@@ -372,11 +497,12 @@
 </span></span><span class="line"><span class="cl">import XYZ from &#39;ol/source/XYZ&#39;;
 </span></span><span class="line"><span class="cl">import { Tile as TileLayer } from &#39;ol/layer&#39;;
 </span></span><span class="line"><span class="cl">import { fromLonLat, transform } from &#34;ol/proj&#34;;
-</span></span><span class="line"><span class="cl">import { Point } from &#34;ol/geom&#34;;
+</span></span><span class="line"><span class="cl">import { Point, LineString } from &#34;ol/geom&#34;;
 </span></span><span class="line"><span class="cl">import { Feature } from &#34;ol&#34;;
-</span></span><span class="line"><span class="cl">import { Style,Icon} from &#34;ol/style&#34;;
+</span></span><span class="line"><span class="cl">import { Style, Icon ,Stroke} from &#34;ol/style&#34;;
 </span></span><span class="line"><span class="cl">import VectorLayer from &#34;ol/layer/Vector&#34;;
 </span></span><span class="line"><span class="cl">import { Vector as VectorSource } from &#34;ol/source&#34;;
+</span></span><span class="line"><span class="cl">import { lineString } from &#39;@turf/turf&#39;;
 </span></span><span class="line"><span class="cl">export default {
 </span></span><span class="line"><span class="cl">    name: &#39;HelloWorld&#39;,
 </span></span><span class="line"><span class="cl">    data() {
@@ -408,7 +534,36 @@
 </span></span><span class="line"><span class="cl">                })
 </span></span><span class="line"><span class="cl">            });
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">            this.setPoint()
+</span></span><span class="line"><span class="cl">            this.addLine()
+</span></span><span class="line"><span class="cl">        },
+</span></span><span class="line"><span class="cl">        addLine() {
+</span></span><span class="line"><span class="cl">            let lineData = [[113.56762000, 34.82407000], [113.56763000, 34.82408000], [113.56764000, 34.82409000], [113.56765000, 34.82410000]]
+</span></span><span class="line"><span class="cl">            let newlineData = []
+</span></span><span class="line"><span class="cl">            lineData.forEach(el =&gt; {
+</span></span><span class="line"><span class="cl">                newlineData.push(fromLonLat(el))
+</span></span><span class="line"><span class="cl">            })
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            let lineFeature = new Feature({
+</span></span><span class="line"><span class="cl">                geometry: new LineString(newlineData)
+</span></span><span class="line"><span class="cl">            })
+</span></span><span class="line"><span class="cl">            let color = &#39;green&#39;;
+</span></span><span class="line"><span class="cl">            let lineStyle = new Style({
+</span></span><span class="line"><span class="cl">                stroke: new Stroke({
+</span></span><span class="line"><span class="cl">                    color: color,
+</span></span><span class="line"><span class="cl">                    width: 4,
+</span></span><span class="line"><span class="cl">                }),
+</span></span><span class="line"><span class="cl">            });
+</span></span><span class="line"><span class="cl">            // 添加线的样式
+</span></span><span class="line"><span class="cl">            lineFeature.setStyle(lineStyle);
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            let lineSource = new VectorSource({
+</span></span><span class="line"><span class="cl">                features: [lineFeature]
+</span></span><span class="line"><span class="cl">            })
+</span></span><span class="line"><span class="cl">            let lineLayer = new VectorLayer({
+</span></span><span class="line"><span class="cl">                source: lineSource
+</span></span><span class="line"><span class="cl">            })
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            this.map.addLayer(lineLayer);
 </span></span><span class="line"><span class="cl">        },
 </span></span><span class="line"><span class="cl">        setPoint() {
 </span></span><span class="line"><span class="cl">            const iconFeature = new Feature({
@@ -438,13 +593,14 @@
 </span></span><span class="line"><span class="cl">        },
 </span></span><span class="line"><span class="cl">        addMark() {
 </span></span><span class="line"><span class="cl">            let feature = new Feature({
-</span></span><span class="line"><span class="cl">                geometry: new Point(fromLonLat([113.56762000, 34.82407000]))})
-</span></span><span class="line"><span class="cl">          
+</span></span><span class="line"><span class="cl">                geometry: new Point(fromLonLat([113.56762000, 34.82407000]))
+</span></span><span class="line"><span class="cl">            })
+</span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">            let mark = new VectorLayer({
 </span></span><span class="line"><span class="cl">                source: new VectorSource({
 </span></span><span class="line"><span class="cl">                    features: [feature]
 </span></span><span class="line"><span class="cl">                }),
-</span></span><span class="line"><span class="cl">              
+</span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">            })
 </span></span><span class="line"><span class="cl">            this.map.addLayer(mark)
 </span></span><span class="line"><span class="cl">        }
@@ -472,7 +628,7 @@
   <p class="copyright-item">
     <span class="item-title">上次更新</span>
     <span class="item-content">
-        2023-03-22
+        2023-03-27
         
     </span>
   </p>
@@ -480,17 +636,11 @@
   
 </div>
 <footer class="post-footer">
-      <div class="post-tags">
-          <a href="/tags/openlayers/">openlayers</a>
-          </div>
+      
       <nav class="post-nav">
-        <a class="prev" href="/post/openlayers/line/">
-            <i class="iconfont icon-left"></i>
-            <span class="prev-text nav-default">openlayers系列之绘制线</span>
-            <span class="prev-text nav-mobile">上一篇</span>
-          </a>
-        <a class="next" href="/post/openlayers/map/">
-            <span class="next-text nav-default">openlayers系列之vue引入</span>
+        
+        <a class="next" href="/post/openlayers/mark/">
+            <span class="next-text nav-default">Openlayers系列之绘制标记</span>
             <span class="next-text nav-mobile">下一篇</span>
             <i class="iconfont icon-right"></i>
           </a>
