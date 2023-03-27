@@ -1,0 +1,2 @@
+User-agent: *
+Sitemap: https://valiant-long.github.io/sitemap.xml

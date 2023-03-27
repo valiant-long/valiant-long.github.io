@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>valiant的个人博客</title>
+    <link>https://valiant-long.github.io/</link>
+    <description>Recent content on valiant的个人博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Wed, 22 Mar 2023 16:23:32 +0800</lastBuildDate><atom:link href="https://valiant-long.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Openlayers系列之绘制标记</title>
+      <link>https://valiant-long.github.io/post/openlayers/mark/</link>
+      <pubDate>Wed, 22 Mar 2023 16:23:32 +0800</pubDate>
+      
+      <guid>https://valiant-long.github.io/post/openlayers/mark/</guid>
+      <description>前言 记上一篇文章[openlayers系列之vue引入] 按需引入依赖 1 2 3 4 5 import { Point } from &amp;#34;ol/geom&amp;#34;; import { Feature } from &amp;#34;ol&amp;#34;; import { Style,Icon} from &amp;#34;ol/style&amp;#34;; import VectorLayer from &amp;#34;ol/layer/Vector&amp;#34;; import { Vector as VectorSource } from &amp;#34;ol/source&amp;#34;; 创建</description>
+    </item>
+    
+    <item>
+      <title>openlayers系列之vue引入</title>
+      <link>https://valiant-long.github.io/post/openlayers/map/</link>
+      <pubDate>Wed, 22 Mar 2023 10:34:33 +0800</pubDate>
+      
+      <guid>https://valiant-long.github.io/post/openlayers/map/</guid>
+      <description>前提配置 假设你已经初始化vue项目 1 npm install ol 创建容器，记得设置宽高 1 &amp;lt;div id=&amp;#34;map&amp;#34;&amp;gt;&amp;lt;/div&amp;gt; 按需引入openlayers 1 2 3 4 5 import Map from&amp;#39;ol/Map&amp;#39;; import View from &amp;#39;ol/View&amp;#39;; import XYZ from &amp;#39;ol/source/XYZ&amp;#39;; import { Tile as TileLayer}</description>
+    </item>
+    
+  </channel>
+</rss>
