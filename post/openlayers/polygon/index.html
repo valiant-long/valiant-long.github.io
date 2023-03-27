@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>openlayers系列之绘制多边形 - valiant的个人博客</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="valiant" /><meta name="description" content="按需引入依赖 1 2 3 4 5 6 7 8 9 10 import Map from &amp;#39;ol/Map&amp;#39;; import View from &amp;#39;ol/View&amp;#39;; import XYZ from &amp;#39;ol/source/XYZ&amp;#39;; import { Tile as TileLayer } from &amp;#39;ol/layer&amp;#39;; import { fromLonLat, transform } from &amp;#34;ol/proj&amp;#34;; import { Polygon} from &amp;#34;ol/geom&amp;#34;; import { Feature } from &amp;#34;ol&amp;#34;; import { Style, Icon ,Stroke} from &amp;#34;ol/style&amp;#34;; import VectorLayer from &amp;#34;ol/layer/Vector&amp;#34;; import { Vector as VectorSource" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.111.3 with theme even" />
+
+
+<link rel="canonical" href="https://valiant-long.github.io/post/openlayers/polygon/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<link href="/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="openlayers系列之绘制多边形" />
+<meta property="og:description" content="按需引入依赖 1 2 3 4 5 6 7 8 9 10 import Map from &#39;ol/Map&#39;; import View from &#39;ol/View&#39;; import XYZ from &#39;ol/source/XYZ&#39;; import { Tile as TileLayer } from &#39;ol/layer&#39;; import { fromLonLat, transform } from &#34;ol/proj&#34;; import { Polygon} from &#34;ol/geom&#34;; import { Feature } from &#34;ol&#34;; import { Style, Icon ,Stroke} from &#34;ol/style&#34;; import VectorLayer from &#34;ol/layer/Vector&#34;; import { Vector as VectorSource" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://valiant-long.github.io/post/openlayers/polygon/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2023-03-27T16:40:59+08:00" />
+<meta property="article:modified_time" content="2023-03-27T16:40:59+08:00" />
+<meta itemprop="name" content="openlayers系列之绘制多边形">
+<meta itemprop="description" content="按需引入依赖 1 2 3 4 5 6 7 8 9 10 import Map from &#39;ol/Map&#39;; import View from &#39;ol/View&#39;; import XYZ from &#39;ol/source/XYZ&#39;; import { Tile as TileLayer } from &#39;ol/layer&#39;; import { fromLonLat, transform } from &#34;ol/proj&#34;; import { Polygon} from &#34;ol/geom&#34;; import { Feature } from &#34;ol&#34;; import { Style, Icon ,Stroke} from &#34;ol/style&#34;; import VectorLayer from &#34;ol/layer/Vector&#34;; import { Vector as VectorSource"><meta itemprop="datePublished" content="2023-03-27T16:40:59+08:00" />
+<meta itemprop="dateModified" content="2023-03-27T16:40:59+08:00" />
+<meta itemprop="wordCount" content="1758">
+<meta itemprop="keywords" content="openlayers," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="openlayers系列之绘制多边形"/>
+<meta name="twitter:description" content="按需引入依赖 1 2 3 4 5 6 7 8 9 10 import Map from &#39;ol/Map&#39;; import View from &#39;ol/View&#39;; import XYZ from &#39;ol/source/XYZ&#39;; import { Tile as TileLayer } from &#39;ol/layer&#39;; import { fromLonLat, transform } from &#34;ol/proj&#34;; import { Polygon} from &#34;ol/geom&#34;; import { Feature } from &#34;ol&#34;; import { Style, Icon ,Stroke} from &#34;ol/style&#34;; import VectorLayer from &#34;ol/layer/Vector&#34;; import { Vector as VectorSource"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Valiant</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">主页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Valiant</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">主页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">openlayers系列之绘制多边形</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2023-03-27 </span>
+        
+          <span class="more-meta"> 约 1758 字 </span>
+          <span class="more-meta"> 预计阅读 4 分钟 </span>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#按需引入依赖">按需引入依赖</a></li>
+            <li><a href="#创建多边形">创建多边形</a></li>
+            <li><a href="#整体代码如下">整体代码如下</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <h3 id="按需引入依赖">按需引入依赖</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">import Map from &#39;ol/Map&#39;;
+</span></span><span class="line"><span class="cl">import View from &#39;ol/View&#39;;
+</span></span><span class="line"><span class="cl">import XYZ from &#39;ol/source/XYZ&#39;;
+</span></span><span class="line"><span class="cl">import { Tile as TileLayer } from &#39;ol/layer&#39;;
+</span></span><span class="line"><span class="cl">import { fromLonLat, transform } from &#34;ol/proj&#34;;
+</span></span><span class="line"><span class="cl">import { Polygon} from &#34;ol/geom&#34;;
+</span></span><span class="line"><span class="cl">import { Feature } from &#34;ol&#34;;
+</span></span><span class="line"><span class="cl">import { Style, Icon ,Stroke} from &#34;ol/style&#34;;
+</span></span><span class="line"><span class="cl">import VectorLayer from &#34;ol/layer/Vector&#34;;
+</span></span><span class="line"><span class="cl">import { Vector as VectorSource } from &#34;ol/source&#34;;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="创建多边形">创建多边形</h3>
+<ol>
+<li>需要对应线的数据</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">            let polygonData = [[113.90314496806384, 32.55119145031371], [113.90323996014925, 32.55090529821837], [113.90357286938732, 32.551129876009725], [113.90367281288155, 32.550699598512765], [113.90333990487254, 32.55047502105481], [113.90368767113986, 32.550267223522305], [113.90369757646867, 32.54997897350877], [113.90395035190585, 32.5500573277816], [113.90412794770106, 32.54984533440191], [113.90438072322067, 32.549923687809084], [113.9043104942128, 32.54948921561037], [113.90448066108058, 32.54949340928286], [113.90451036815635, 32.548628658438524], [113.9047755173468, 32.54834669792548], [113.90455245100283, 32.547403594497126], [113.90490267737313, 32.547123730008416], [113.9052430024095, 32.5471321149814], [113.90552299189441, 32.54641777644994], [113.90620363718125, 32.54643454179698], [113.9063812200704, 32.546222544369044], [113.90689170329237, 32.54623511517295], [113.90715436459246, 32.54602521144418], [113.9077474548084, 32.54611193626682], [113.90792503354562, 32.54589993638597], [113.90843798782572, 32.5458404379363], [113.90878819653909, 32.54556056144315], [113.90937881459087, 32.545719341400854], [113.90961181459905, 32.546374187481184], [113.90970430901407, 32.5461600917095], [113.91012971271965, 32.54617055626247], [113.90989670926501, 32.54551571092959], [113.91025926548397, 32.544875514957695], [113.91001390995845, 32.544580984898275], [113.91035422704749, 32.54458935545819], [113.91036163846013, 32.544373166390464], [113.91028644140913, 32.544082821772825], [113.9101162838133, 32.54407863657368], [113.91012863683154, 32.543718321507605], [113.90995847994863, 32.54371413613639], [113.90996589206036, 32.543497947119434], [113.90979820644107, 32.54342169855699], [113.90981303118669, 32.54298932055956], [113.91007320554333, 32.542851472659976], [113.91000048086588, 32.54248906492205], [113.91026312379994, 32.54227915347875], [113.91027794566644, 32.541846775212704], [113.91044809907875, 32.541850959939126], [113.91037043297916, 32.5416326784409], [113.91097090813003, 32.54150319725995], [113.91098325651244, 32.54114288175522], [113.9112409542698, 32.541077094085765], [113.91125083196881, 32.54078884159088], [113.91185376938945, 32.54058729259663], [113.91195365790371, 32.540157004783815], [113.9123063013929, 32.53980505305578], [113.91258374028897, 32.53916275651838], [113.91310405761527, 32.5388870466459], [113.9131089930907, 32.53874292009655], [113.91285623906342, 32.538664585592834], [113.91287351431106, 32.538160142753], [113.91253322066216, 32.538151780473626], [113.91254062502054, 32.53793559073944], [113.91228293717215, 32.53800138170718], [113.9123556690464, 32.53836378868], [113.91218552190357, 32.538359606931365], [113.91202524898776, 32.53806717212243], [113.91201784335712, 32.538283361746856], [113.91176262296501, 32.53827708836587], [113.91183782158076, 32.53856743232279], [113.91132737935567, 32.53855488421624], [113.91140504579953, 32.53877316519334], [113.91114735486948, 32.53883895362658], [113.91104993397039, 32.539197177600286], [113.91070716730486, 32.53926087325699], [113.91069728844909, 32.5395491256738], [113.91104499511974, 32.53934130385884], [113.91103264783891, 32.539701619487815], [113.91077742367277, 32.539695343865304], [113.91077248429225, 32.539839470075314], [113.91051478989218, 32.539905256987446], [113.91049997026673, 32.54033763548378], [113.91032981970007, 32.54033345099976], [113.91025709515614, 32.53997104334702], [113.91008694531986, 32.53996685857608], [113.90999198903864, 32.54025301829684], [113.90965910028163, 32.54002845867007], [113.90959379046302, 32.53944986171187], [113.90993408806226, 32.53945823224086], [113.90992420666178, 32.53974648443799], [113.91009188581964, 32.53982273246239], [113.91027685585965, 32.53939453877603], [113.91011658778956, 32.53910210183425], [113.91036934016415, 32.53918044178133], [113.91037674999994, 32.53896425252454], [113.91004139450976, 32.53881175717589], [113.90969121741807, 32.539091639248085], [113.90841016459281, 32.539204368776986], [113.90719193093331, 32.53996774517776], [113.90709449295646, 32.54032596499882], [113.90692434295984, 32.54032177590824], [113.90693176137525, 32.5401055873951], [113.90675913888862, 32.540173460936586], [113.90683184927668, 32.54053586976365], [113.90708954757307, 32.54047009069239], [113.90716967743691, 32.54061631086422], [113.90759258166594, 32.54069884529187], [113.90758763700734, 32.5408429710448], [113.90715731407454, 32.54097662509968], [113.90697232570167, 32.54140481300036], [113.90712516829994, 32.5419134419955], [113.90668494683062, 32.54233534528869], [113.9065850301948, 32.542765627108906], [113.90632485136695, 32.54290346746939], [113.9055071961949, 32.5443979255134], [113.90500167350972, 32.54424122439846], [113.90497445098079, 32.54503391359986], [113.90463165884752, 32.54509759100395], [113.90445159921997, 32.54538164848305], [113.90402372590263, 32.545443227524686], [113.90401629899581, 32.545659415259095], [113.90367597991103, 32.54565102730171], [113.9030151535793, 32.54505774853975], [113.90258975798623, 32.54504726023392], [113.90249724846049, 32.545261349837354], [113.90215693136729, 32.54525295785942], [113.90224944167088, 32.54503886855521], [113.901743922261, 32.54488215445498], [113.90158862952849, 32.544445583073994], [113.901075681114, 32.54450505374248], [113.9009831687481, 32.544719142060764], [113.90100051440794, 32.544214705374465], [113.90040001053524, 32.54434413683037], [113.9003223676838, 32.54412585053409], [113.9001522116122, 32.544121651846474], [113.90024472516818, 32.54390756420614], [113.89998949171041, 32.543901265968344], [113.8999845342963, 32.544045390609845], [113.89973177942635, 32.543967029517425], [113.89972682158798, 32.544111154122184], [113.89947654592453, 32.54396073022827], [113.8995541865722, 32.54417901691967], [113.89938155131196, 32.54424687946321], [113.89921139516392, 32.54424267948866], [113.89930391104731, 32.544028592688875], [113.89904867747491, 32.54402229252068], [113.89896855867552, 32.543876067847236], [113.89895120187934, 32.544380503588535], [113.8986959673967, 32.54437420264413], [113.8988537253938, 32.54473871451615], [113.89851341144814, 32.544730312796396], [113.8985860903678, 32.545092724385675], [113.89952195788341, 32.545115826590035], [113.9000448253185, 32.54476811329713], [113.90106329156315, 32.5448653656753], [113.90164150097074, 32.545384493006345], [113.90231222797706, 32.54568952874086], [113.90256994386186, 32.54562376009215], [113.9031456906539, 32.54621494376071], [113.9033984552233, 32.54629329851553], [113.9032985171086, 32.54672357626872], [113.9037140168832, 32.547022312824126], [113.90344886880894, 32.547304271179684], [113.90343896370348, 32.547592521247935], [113.90360665068957, 32.54766877840982], [113.90357198348109, 32.54867765367136], [113.90281119422364, 32.548514650298486], [113.9023758734501, 32.54879241003964], [113.90201572256113, 32.54936051614028], [113.90215368103873, 32.55030152413928], [113.90249401717941, 32.55030991727787], [113.90239406871913, 32.5507401935432], [113.90256423763823, 32.55074438995211], [113.90264189039584, 32.55096267534089], [113.90264932211105, 32.55074648807037], [113.9029070525999, 32.55068071963754], [113.90289466742465, 32.55104103184189], [113.903154875479, 32.55090320049075], [113.90314496806384, 32.55119145031371]]
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="2">
+<li>因为openlayers用的是EPSG:3857 需要转换坐标</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">  let newpolygonData = []
+</span></span><span class="line"><span class="cl">            polygonData.forEach(el =&gt; {
+</span></span><span class="line"><span class="cl">                newpolygonData.push(fromLonLat(el))
+</span></span><span class="line"><span class="cl">            })
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="3">
+<li>创建feature,因为多边形是三维数组，需要外层再套个数组</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl"> let polygonFeature = new Feature({
+</span></span><span class="line"><span class="cl">                geometry: new Polygon([newpolygonData])
+</span></span><span class="line"><span class="cl">            })
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="4">
+<li>设置线的样式</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl"> let color = &#39;green&#39;;
+</span></span><span class="line"><span class="cl">            let polygonStyle = new Style({
+</span></span><span class="line"><span class="cl">                stroke: new Stroke({
+</span></span><span class="line"><span class="cl">                    color: color,
+</span></span><span class="line"><span class="cl">                    width: 4,
+</span></span><span class="line"><span class="cl">                }),
+</span></span><span class="line"><span class="cl">            });
+</span></span><span class="line"><span class="cl">            // 添加线的样式
+</span></span><span class="line"><span class="cl">            polygonFeature.setStyle(polygonStyle);
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="5">
+<li>创建source</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl"> let polygonSource = new VectorSource({
+</span></span><span class="line"><span class="cl">                features: [polygonFeature]
+</span></span><span class="line"><span class="cl">            })
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="6">
+<li>创建layer</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">let polygonLayer = new VectorLayer({
+</span></span><span class="line"><span class="cl">                source: polygonSource
+</span></span><span class="line"><span class="cl">            })
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="7">
+<li>加入地图</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">this.map.addLayer(polygonLayer);
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="具体方法">具体方法</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">addpolygon() {
+</span></span><span class="line"><span class="cl">            let polygonData = [[113.90314496806384, 32.55119145031371], [113.90323996014925, 32.55090529821837], [113.90357286938732, 32.551129876009725], [113.90367281288155, 32.550699598512765], [113.90333990487254, 32.55047502105481], [113.90368767113986, 32.550267223522305], [113.90369757646867, 32.54997897350877], [113.90395035190585, 32.5500573277816], [113.90412794770106, 32.54984533440191], [113.90438072322067, 32.549923687809084], [113.9043104942128, 32.54948921561037], [113.90448066108058, 32.54949340928286], [113.90451036815635, 32.548628658438524], [113.9047755173468, 32.54834669792548], [113.90455245100283, 32.547403594497126], [113.90490267737313, 32.547123730008416], [113.9052430024095, 32.5471321149814], [113.90552299189441, 32.54641777644994], [113.90620363718125, 32.54643454179698], [113.9063812200704, 32.546222544369044], [113.90689170329237, 32.54623511517295], [113.90715436459246, 32.54602521144418], [113.9077474548084, 32.54611193626682], [113.90792503354562, 32.54589993638597], [113.90843798782572, 32.5458404379363], [113.90878819653909, 32.54556056144315], [113.90937881459087, 32.545719341400854], [113.90961181459905, 32.546374187481184], [113.90970430901407, 32.5461600917095], [113.91012971271965, 32.54617055626247], [113.90989670926501, 32.54551571092959], [113.91025926548397, 32.544875514957695], [113.91001390995845, 32.544580984898275], [113.91035422704749, 32.54458935545819], [113.91036163846013, 32.544373166390464], [113.91028644140913, 32.544082821772825], [113.9101162838133, 32.54407863657368], [113.91012863683154, 32.543718321507605], [113.90995847994863, 32.54371413613639], [113.90996589206036, 32.543497947119434], [113.90979820644107, 32.54342169855699], [113.90981303118669, 32.54298932055956], [113.91007320554333, 32.542851472659976], [113.91000048086588, 32.54248906492205], [113.91026312379994, 32.54227915347875], [113.91027794566644, 32.541846775212704], [113.91044809907875, 32.541850959939126], [113.91037043297916, 32.5416326784409], [113.91097090813003, 32.54150319725995], [113.91098325651244, 32.54114288175522], [113.9112409542698, 32.541077094085765], [113.91125083196881, 32.54078884159088], [113.91185376938945, 32.54058729259663], [113.91195365790371, 32.540157004783815], [113.9123063013929, 32.53980505305578], [113.91258374028897, 32.53916275651838], [113.91310405761527, 32.5388870466459], [113.9131089930907, 32.53874292009655], [113.91285623906342, 32.538664585592834], [113.91287351431106, 32.538160142753], [113.91253322066216, 32.538151780473626], [113.91254062502054, 32.53793559073944], [113.91228293717215, 32.53800138170718], [113.9123556690464, 32.53836378868], [113.91218552190357, 32.538359606931365], [113.91202524898776, 32.53806717212243], [113.91201784335712, 32.538283361746856], [113.91176262296501, 32.53827708836587], [113.91183782158076, 32.53856743232279], [113.91132737935567, 32.53855488421624], [113.91140504579953, 32.53877316519334], [113.91114735486948, 32.53883895362658], [113.91104993397039, 32.539197177600286], [113.91070716730486, 32.53926087325699], [113.91069728844909, 32.5395491256738], [113.91104499511974, 32.53934130385884], [113.91103264783891, 32.539701619487815], [113.91077742367277, 32.539695343865304], [113.91077248429225, 32.539839470075314], [113.91051478989218, 32.539905256987446], [113.91049997026673, 32.54033763548378], [113.91032981970007, 32.54033345099976], [113.91025709515614, 32.53997104334702], [113.91008694531986, 32.53996685857608], [113.90999198903864, 32.54025301829684], [113.90965910028163, 32.54002845867007], [113.90959379046302, 32.53944986171187], [113.90993408806226, 32.53945823224086], [113.90992420666178, 32.53974648443799], [113.91009188581964, 32.53982273246239], [113.91027685585965, 32.53939453877603], [113.91011658778956, 32.53910210183425], [113.91036934016415, 32.53918044178133], [113.91037674999994, 32.53896425252454], [113.91004139450976, 32.53881175717589], [113.90969121741807, 32.539091639248085], [113.90841016459281, 32.539204368776986], [113.90719193093331, 32.53996774517776], [113.90709449295646, 32.54032596499882], [113.90692434295984, 32.54032177590824], [113.90693176137525, 32.5401055873951], [113.90675913888862, 32.540173460936586], [113.90683184927668, 32.54053586976365], [113.90708954757307, 32.54047009069239], [113.90716967743691, 32.54061631086422], [113.90759258166594, 32.54069884529187], [113.90758763700734, 32.5408429710448], [113.90715731407454, 32.54097662509968], [113.90697232570167, 32.54140481300036], [113.90712516829994, 32.5419134419955], [113.90668494683062, 32.54233534528869], [113.9065850301948, 32.542765627108906], [113.90632485136695, 32.54290346746939], [113.9055071961949, 32.5443979255134], [113.90500167350972, 32.54424122439846], [113.90497445098079, 32.54503391359986], [113.90463165884752, 32.54509759100395], [113.90445159921997, 32.54538164848305], [113.90402372590263, 32.545443227524686], [113.90401629899581, 32.545659415259095], [113.90367597991103, 32.54565102730171], [113.9030151535793, 32.54505774853975], [113.90258975798623, 32.54504726023392], [113.90249724846049, 32.545261349837354], [113.90215693136729, 32.54525295785942], [113.90224944167088, 32.54503886855521], [113.901743922261, 32.54488215445498], [113.90158862952849, 32.544445583073994], [113.901075681114, 32.54450505374248], [113.9009831687481, 32.544719142060764], [113.90100051440794, 32.544214705374465], [113.90040001053524, 32.54434413683037], [113.9003223676838, 32.54412585053409], [113.9001522116122, 32.544121651846474], [113.90024472516818, 32.54390756420614], [113.89998949171041, 32.543901265968344], [113.8999845342963, 32.544045390609845], [113.89973177942635, 32.543967029517425], [113.89972682158798, 32.544111154122184], [113.89947654592453, 32.54396073022827], [113.8995541865722, 32.54417901691967], [113.89938155131196, 32.54424687946321], [113.89921139516392, 32.54424267948866], [113.89930391104731, 32.544028592688875], [113.89904867747491, 32.54402229252068], [113.89896855867552, 32.543876067847236], [113.89895120187934, 32.544380503588535], [113.8986959673967, 32.54437420264413], [113.8988537253938, 32.54473871451615], [113.89851341144814, 32.544730312796396], [113.8985860903678, 32.545092724385675], [113.89952195788341, 32.545115826590035], [113.9000448253185, 32.54476811329713], [113.90106329156315, 32.5448653656753], [113.90164150097074, 32.545384493006345], [113.90231222797706, 32.54568952874086], [113.90256994386186, 32.54562376009215], [113.9031456906539, 32.54621494376071], [113.9033984552233, 32.54629329851553], [113.9032985171086, 32.54672357626872], [113.9037140168832, 32.547022312824126], [113.90344886880894, 32.547304271179684], [113.90343896370348, 32.547592521247935], [113.90360665068957, 32.54766877840982], [113.90357198348109, 32.54867765367136], [113.90281119422364, 32.548514650298486], [113.9023758734501, 32.54879241003964], [113.90201572256113, 32.54936051614028], [113.90215368103873, 32.55030152413928], [113.90249401717941, 32.55030991727787], [113.90239406871913, 32.5507401935432], [113.90256423763823, 32.55074438995211], [113.90264189039584, 32.55096267534089], [113.90264932211105, 32.55074648807037], [113.9029070525999, 32.55068071963754], [113.90289466742465, 32.55104103184189], [113.903154875479, 32.55090320049075], [113.90314496806384, 32.55119145031371]]
+</span></span><span class="line"><span class="cl">            let newpolygonData = []
+</span></span><span class="line"><span class="cl">            polygonData.forEach(el =&gt; {
+</span></span><span class="line"><span class="cl">                newpolygonData.push(fromLonLat(el))
+</span></span><span class="line"><span class="cl">            })
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            let polygonFeature = new Feature({
+</span></span><span class="line"><span class="cl">                geometry: new Polygon([newpolygonData])
+</span></span><span class="line"><span class="cl">            })
+</span></span><span class="line"><span class="cl">            let color = &#39;green&#39;;
+</span></span><span class="line"><span class="cl">            let polygonStyle = new Style({
+</span></span><span class="line"><span class="cl">                stroke: new Stroke({
+</span></span><span class="line"><span class="cl">                    color: color,
+</span></span><span class="line"><span class="cl">                    width: 4,
+</span></span><span class="line"><span class="cl">                }),
+</span></span><span class="line"><span class="cl">            });
+</span></span><span class="line"><span class="cl">            // 添加线的样式
+</span></span><span class="line"><span class="cl">            polygonFeature.setStyle(polygonStyle);
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            let polygonSource = new VectorSource({
+</span></span><span class="line"><span class="cl">                features: [polygonFeature]
+</span></span><span class="line"><span class="cl">            })
+</span></span><span class="line"><span class="cl">            let polygonLayer = new VectorLayer({
+</span></span><span class="line"><span class="cl">                source: polygonSource
+</span></span><span class="line"><span class="cl">            })
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            this.map.addLayer(polygonLayer);
+</span></span><span class="line"><span class="cl">        }
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="实现效果">实现效果</h4>
+<p><img src="/img/5.jpg" alt=""></p>
+<h3 id="整体代码如下">整体代码如下</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span><span class="lnt">76
+</span><span class="lnt">77
+</span><span class="lnt">78
+</span><span class="lnt">79
+</span><span class="lnt">80
+</span><span class="lnt">81
+</span><span class="lnt">82
+</span><span class="lnt">83
+</span><span class="lnt">84
+</span><span class="lnt">85
+</span><span class="lnt">86
+</span><span class="lnt">87
+</span><span class="lnt">88
+</span><span class="lnt">89
+</span><span class="lnt">90
+</span><span class="lnt">91
+</span><span class="lnt">92
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;template&gt;
+</span></span><span class="line"><span class="cl">    &lt;div&gt;
+</span></span><span class="line"><span class="cl">        &lt;div id=&#34;map&#34;&gt;
+</span></span><span class="line"><span class="cl">        &lt;/div&gt;
+</span></span><span class="line"><span class="cl">    &lt;/div&gt;
+</span></span><span class="line"><span class="cl">&lt;/template&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">&lt;script&gt;
+</span></span><span class="line"><span class="cl">import Map from &#39;ol/Map&#39;;
+</span></span><span class="line"><span class="cl">import View from &#39;ol/View&#39;;
+</span></span><span class="line"><span class="cl">import XYZ from &#39;ol/source/XYZ&#39;;
+</span></span><span class="line"><span class="cl">import { Tile as TileLayer } from &#39;ol/layer&#39;;
+</span></span><span class="line"><span class="cl">import { fromLonLat, transform } from &#34;ol/proj&#34;;
+</span></span><span class="line"><span class="cl">import { Polygon} from &#34;ol/geom&#34;;
+</span></span><span class="line"><span class="cl">import { Feature } from &#34;ol&#34;;
+</span></span><span class="line"><span class="cl">import { Style, Icon ,Stroke} from &#34;ol/style&#34;;
+</span></span><span class="line"><span class="cl">import VectorLayer from &#34;ol/layer/Vector&#34;;
+</span></span><span class="line"><span class="cl">import { Vector as VectorSource } from &#34;ol/source&#34;;
+</span></span><span class="line"><span class="cl">export default {
+</span></span><span class="line"><span class="cl">    name: &#39;HelloWorld&#39;,
+</span></span><span class="line"><span class="cl">    data() {
+</span></span><span class="line"><span class="cl">        return {
+</span></span><span class="line"><span class="cl">            map: null,
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        }
+</span></span><span class="line"><span class="cl">    },
+</span></span><span class="line"><span class="cl">    mounted() {
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        this.init();
+</span></span><span class="line"><span class="cl">    },
+</span></span><span class="line"><span class="cl">    methods: {
+</span></span><span class="line"><span class="cl">        init() {
+</span></span><span class="line"><span class="cl">            let baseLayer = new TileLayer({
+</span></span><span class="line"><span class="cl">                visible: true,
+</span></span><span class="line"><span class="cl">                name: &#34;电子图&#34;,
+</span></span><span class="line"><span class="cl">                source: new XYZ({
+</span></span><span class="line"><span class="cl">                    url: &#39;https://wprd0{1-4}.is.autonavi.com/appmaptile?lang=zh_cn&amp;size=1&amp;style=7&amp;x={x}&amp;y={y}&amp;z={z}&#39;,
+</span></span><span class="line"><span class="cl">                    crossOrigin: &#34;anonymous&#34;,
+</span></span><span class="line"><span class="cl">                }),
+</span></span><span class="line"><span class="cl">            });
+</span></span><span class="line"><span class="cl">            this.map = new Map({
+</span></span><span class="line"><span class="cl">                target: &#39;map&#39;,
+</span></span><span class="line"><span class="cl">                layers: [baseLayer],
+</span></span><span class="line"><span class="cl">                view: new View({
+</span></span><span class="line"><span class="cl">                    center: fromLonLat([113.90314496806384, 32.55119145031371]),
+</span></span><span class="line"><span class="cl">                    zoom: 16
+</span></span><span class="line"><span class="cl">                })
+</span></span><span class="line"><span class="cl">            });
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            this.addpolygon()
+</span></span><span class="line"><span class="cl">        },
+</span></span><span class="line"><span class="cl">        addpolygon() {
+</span></span><span class="line"><span class="cl">            let polygonData = [[113.90314496806384, 32.55119145031371], [113.90323996014925, 32.55090529821837], [113.90357286938732, 32.551129876009725], [113.90367281288155, 32.550699598512765], [113.90333990487254, 32.55047502105481], [113.90368767113986, 32.550267223522305], [113.90369757646867, 32.54997897350877], [113.90395035190585, 32.5500573277816], [113.90412794770106, 32.54984533440191], [113.90438072322067, 32.549923687809084], [113.9043104942128, 32.54948921561037], [113.90448066108058, 32.54949340928286], [113.90451036815635, 32.548628658438524], [113.9047755173468, 32.54834669792548], [113.90455245100283, 32.547403594497126], [113.90490267737313, 32.547123730008416], [113.9052430024095, 32.5471321149814], [113.90552299189441, 32.54641777644994], [113.90620363718125, 32.54643454179698], [113.9063812200704, 32.546222544369044], [113.90689170329237, 32.54623511517295], [113.90715436459246, 32.54602521144418], [113.9077474548084, 32.54611193626682], [113.90792503354562, 32.54589993638597], [113.90843798782572, 32.5458404379363], [113.90878819653909, 32.54556056144315], [113.90937881459087, 32.545719341400854], [113.90961181459905, 32.546374187481184], [113.90970430901407, 32.5461600917095], [113.91012971271965, 32.54617055626247], [113.90989670926501, 32.54551571092959], [113.91025926548397, 32.544875514957695], [113.91001390995845, 32.544580984898275], [113.91035422704749, 32.54458935545819], [113.91036163846013, 32.544373166390464], [113.91028644140913, 32.544082821772825], [113.9101162838133, 32.54407863657368], [113.91012863683154, 32.543718321507605], [113.90995847994863, 32.54371413613639], [113.90996589206036, 32.543497947119434], [113.90979820644107, 32.54342169855699], [113.90981303118669, 32.54298932055956], [113.91007320554333, 32.542851472659976], [113.91000048086588, 32.54248906492205], [113.91026312379994, 32.54227915347875], [113.91027794566644, 32.541846775212704], [113.91044809907875, 32.541850959939126], [113.91037043297916, 32.5416326784409], [113.91097090813003, 32.54150319725995], [113.91098325651244, 32.54114288175522], [113.9112409542698, 32.541077094085765], [113.91125083196881, 32.54078884159088], [113.91185376938945, 32.54058729259663], [113.91195365790371, 32.540157004783815], [113.9123063013929, 32.53980505305578], [113.91258374028897, 32.53916275651838], [113.91310405761527, 32.5388870466459], [113.9131089930907, 32.53874292009655], [113.91285623906342, 32.538664585592834], [113.91287351431106, 32.538160142753], [113.91253322066216, 32.538151780473626], [113.91254062502054, 32.53793559073944], [113.91228293717215, 32.53800138170718], [113.9123556690464, 32.53836378868], [113.91218552190357, 32.538359606931365], [113.91202524898776, 32.53806717212243], [113.91201784335712, 32.538283361746856], [113.91176262296501, 32.53827708836587], [113.91183782158076, 32.53856743232279], [113.91132737935567, 32.53855488421624], [113.91140504579953, 32.53877316519334], [113.91114735486948, 32.53883895362658], [113.91104993397039, 32.539197177600286], [113.91070716730486, 32.53926087325699], [113.91069728844909, 32.5395491256738], [113.91104499511974, 32.53934130385884], [113.91103264783891, 32.539701619487815], [113.91077742367277, 32.539695343865304], [113.91077248429225, 32.539839470075314], [113.91051478989218, 32.539905256987446], [113.91049997026673, 32.54033763548378], [113.91032981970007, 32.54033345099976], [113.91025709515614, 32.53997104334702], [113.91008694531986, 32.53996685857608], [113.90999198903864, 32.54025301829684], [113.90965910028163, 32.54002845867007], [113.90959379046302, 32.53944986171187], [113.90993408806226, 32.53945823224086], [113.90992420666178, 32.53974648443799], [113.91009188581964, 32.53982273246239], [113.91027685585965, 32.53939453877603], [113.91011658778956, 32.53910210183425], [113.91036934016415, 32.53918044178133], [113.91037674999994, 32.53896425252454], [113.91004139450976, 32.53881175717589], [113.90969121741807, 32.539091639248085], [113.90841016459281, 32.539204368776986], [113.90719193093331, 32.53996774517776], [113.90709449295646, 32.54032596499882], [113.90692434295984, 32.54032177590824], [113.90693176137525, 32.5401055873951], [113.90675913888862, 32.540173460936586], [113.90683184927668, 32.54053586976365], [113.90708954757307, 32.54047009069239], [113.90716967743691, 32.54061631086422], [113.90759258166594, 32.54069884529187], [113.90758763700734, 32.5408429710448], [113.90715731407454, 32.54097662509968], [113.90697232570167, 32.54140481300036], [113.90712516829994, 32.5419134419955], [113.90668494683062, 32.54233534528869], [113.9065850301948, 32.542765627108906], [113.90632485136695, 32.54290346746939], [113.9055071961949, 32.5443979255134], [113.90500167350972, 32.54424122439846], [113.90497445098079, 32.54503391359986], [113.90463165884752, 32.54509759100395], [113.90445159921997, 32.54538164848305], [113.90402372590263, 32.545443227524686], [113.90401629899581, 32.545659415259095], [113.90367597991103, 32.54565102730171], [113.9030151535793, 32.54505774853975], [113.90258975798623, 32.54504726023392], [113.90249724846049, 32.545261349837354], [113.90215693136729, 32.54525295785942], [113.90224944167088, 32.54503886855521], [113.901743922261, 32.54488215445498], [113.90158862952849, 32.544445583073994], [113.901075681114, 32.54450505374248], [113.9009831687481, 32.544719142060764], [113.90100051440794, 32.544214705374465], [113.90040001053524, 32.54434413683037], [113.9003223676838, 32.54412585053409], [113.9001522116122, 32.544121651846474], [113.90024472516818, 32.54390756420614], [113.89998949171041, 32.543901265968344], [113.8999845342963, 32.544045390609845], [113.89973177942635, 32.543967029517425], [113.89972682158798, 32.544111154122184], [113.89947654592453, 32.54396073022827], [113.8995541865722, 32.54417901691967], [113.89938155131196, 32.54424687946321], [113.89921139516392, 32.54424267948866], [113.89930391104731, 32.544028592688875], [113.89904867747491, 32.54402229252068], [113.89896855867552, 32.543876067847236], [113.89895120187934, 32.544380503588535], [113.8986959673967, 32.54437420264413], [113.8988537253938, 32.54473871451615], [113.89851341144814, 32.544730312796396], [113.8985860903678, 32.545092724385675], [113.89952195788341, 32.545115826590035], [113.9000448253185, 32.54476811329713], [113.90106329156315, 32.5448653656753], [113.90164150097074, 32.545384493006345], [113.90231222797706, 32.54568952874086], [113.90256994386186, 32.54562376009215], [113.9031456906539, 32.54621494376071], [113.9033984552233, 32.54629329851553], [113.9032985171086, 32.54672357626872], [113.9037140168832, 32.547022312824126], [113.90344886880894, 32.547304271179684], [113.90343896370348, 32.547592521247935], [113.90360665068957, 32.54766877840982], [113.90357198348109, 32.54867765367136], [113.90281119422364, 32.548514650298486], [113.9023758734501, 32.54879241003964], [113.90201572256113, 32.54936051614028], [113.90215368103873, 32.55030152413928], [113.90249401717941, 32.55030991727787], [113.90239406871913, 32.5507401935432], [113.90256423763823, 32.55074438995211], [113.90264189039584, 32.55096267534089], [113.90264932211105, 32.55074648807037], [113.9029070525999, 32.55068071963754], [113.90289466742465, 32.55104103184189], [113.903154875479, 32.55090320049075], [113.90314496806384, 32.55119145031371]]
+</span></span><span class="line"><span class="cl">            let newpolygonData = []
+</span></span><span class="line"><span class="cl">            polygonData.forEach(el =&gt; {
+</span></span><span class="line"><span class="cl">                newpolygonData.push(fromLonLat(el))
+</span></span><span class="line"><span class="cl">            })
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            let polygonFeature = new Feature({
+</span></span><span class="line"><span class="cl">                geometry: new Polygon([newpolygonData])
+</span></span><span class="line"><span class="cl">            })
+</span></span><span class="line"><span class="cl">            let color = &#39;green&#39;;
+</span></span><span class="line"><span class="cl">            let polygonStyle = new Style({
+</span></span><span class="line"><span class="cl">                stroke: new Stroke({
+</span></span><span class="line"><span class="cl">                    color: color,
+</span></span><span class="line"><span class="cl">                    width: 4,
+</span></span><span class="line"><span class="cl">                }),
+</span></span><span class="line"><span class="cl">            });
+</span></span><span class="line"><span class="cl">            // 添加线的样式
+</span></span><span class="line"><span class="cl">            polygonFeature.setStyle(polygonStyle);
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            let polygonSource = new VectorSource({
+</span></span><span class="line"><span class="cl">                features: [polygonFeature]
+</span></span><span class="line"><span class="cl">            })
+</span></span><span class="line"><span class="cl">            let polygonLayer = new VectorLayer({
+</span></span><span class="line"><span class="cl">                source: polygonSource
+</span></span><span class="line"><span class="cl">            })
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            this.map.addLayer(polygonLayer);
+</span></span><span class="line"><span class="cl">        },
+</span></span><span class="line"><span class="cl">     
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">&lt;/script&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">&lt;!-- Add &#34;scoped&#34; attribute to limit CSS to this component only --&gt;
+</span></span><span class="line"><span class="cl">&lt;style scoped&gt;
+</span></span><span class="line"><span class="cl">#map {
+</span></span><span class="line"><span class="cl">    width: 1920px;
+</span></span><span class="line"><span class="cl">    height: 1080px;
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">&lt;/style&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">valiant</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2023-03-27
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/openlayers/">openlayers</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/openlayers/getcenter/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">openlayers系列之获取多边形中心点</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/openlayers/line/">
+            <span class="next-text nav-default">openlayers系列之绘制线</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+  <a href="https://valiant-long.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2023<span class="heart"><i class="iconfont icon-heart"></i></span><span>valiant</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

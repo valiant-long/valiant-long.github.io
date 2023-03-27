@@ -6,7 +6,34 @@
     <description>Recent content in openlayers on valiant的个人博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Wed, 22 Mar 2023 16:23:32 +0800</lastBuildDate><atom:link href="https://valiant-long.github.io/tags/openlayers/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 27 Mar 2023 16:59:02 +0800</lastBuildDate><atom:link href="https://valiant-long.github.io/tags/openlayers/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>openlayers系列之获取多边形中心点</title>
+      <link>https://valiant-long.github.io/post/openlayers/getcenter/</link>
+      <pubDate>Mon, 27 Mar 2023 16:59:02 +0800</pubDate>
+      
+      <guid>https://valiant-long.github.io/post/openlayers/getcenter/</guid>
+      <description>前言 再上篇文章[openlayers系列之绘制多边形]中，绘制的 图形没有居中显示，所以要借助openlayers的extent工具进行获取多</description>
+    </item>
+    
+    <item>
+      <title>openlayers系列之绘制多边形</title>
+      <link>https://valiant-long.github.io/post/openlayers/polygon/</link>
+      <pubDate>Mon, 27 Mar 2023 16:40:59 +0800</pubDate>
+      
+      <guid>https://valiant-long.github.io/post/openlayers/polygon/</guid>
+      <description>按需引入依赖 1 2 3 4 5 6 7 8 9 10 import Map from &amp;#39;ol/Map&amp;#39;; import View from &amp;#39;ol/View&amp;#39;; import XYZ from &amp;#39;ol/source/XYZ&amp;#39;; import { Tile as TileLayer } from &amp;#39;ol/layer&amp;#39;; import { fromLonLat, transform } from &amp;#34;ol/proj&amp;#34;; import { Polygon} from &amp;#34;ol/geom&amp;#34;; import { Feature } from &amp;#34;ol&amp;#34;; import { Style, Icon ,Stroke} from &amp;#34;ol/style&amp;#34;; import VectorLayer from &amp;#34;ol/layer/Vector&amp;#34;; import { Vector as VectorSource</description>
+    </item>
+    
+    <item>
+      <title>openlayers系列之绘制线</title>
+      <link>https://valiant-long.github.io/post/openlayers/line/</link>
+      <pubDate>Mon, 27 Mar 2023 15:36:41 +0800</pubDate>
+      
+      <guid>https://valiant-long.github.io/post/openlayers/line/</guid>
+      <description>前言 记上一篇文章[openlayers系列之绘制标记] 按需引入依赖 1 2 import { Point,LineString } from &amp;#34;ol/geom&amp;#34;; import { Style, Icon ,Stroke} from &amp;#34;ol/style&amp;#34;; 创建线 需要对应线的数据 1 let lineData = [[113.56762000, 34.82407000], [113.56763000, 34.82408000], [113.56764000, 34.82409000], [113.56765000,</description>
+    </item>
+    
     <item>
       <title>Openlayers系列之绘制标记</title>
       <link>https://valiant-long.github.io/post/openlayers/mark/</link>
