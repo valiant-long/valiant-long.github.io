@@ -6,7 +6,25 @@
     <description>Recent content in openlayers on valiant的个人博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 27 Mar 2023 16:59:02 +0800</lastBuildDate><atom:link href="https://valiant-long.github.io/tags/openlayers/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 28 Mar 2023 10:41:04 +0800</lastBuildDate><atom:link href="https://valiant-long.github.io/tags/openlayers/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>openlayers系列之根据一个坐标为中心绘制正方形</title>
+      <link>https://valiant-long.github.io/post/openlayers/square/</link>
+      <pubDate>Tue, 28 Mar 2023 10:41:04 +0800</pubDate>
+      
+      <guid>https://valiant-long.github.io/post/openlayers/square/</guid>
+      <description>需求 最近有个需求，就是要根据实时坐标点进行正方形打点。那就简单的实现下。 按需引入 1 2 3 4 5 6 7 8 9 10 import Map from &amp;#39;ol/Map&amp;#39;; import View from &amp;#39;ol/View&amp;#39;; import XYZ from &amp;#39;ol/source/XYZ&amp;#39;; import { Tile as TileLayer } from &amp;#39;ol/layer&amp;#39;;</description>
+    </item>
+    
+    <item>
+      <title>openlayers系列之信息窗体</title>
+      <link>https://valiant-long.github.io/post/openlayers/popup/</link>
+      <pubDate>Tue, 28 Mar 2023 09:03:39 +0800</pubDate>
+      
+      <guid>https://valiant-long.github.io/post/openlayers/popup/</guid>
+      <description>需求 一般再绘制点，或者面的时候。会有点击弹窗的需求。 按需引入 1 2 3 4 5 6 7 8 9 10 import Map from &amp;#39;ol/Map&amp;#39;; import View from &amp;#39;ol/View&amp;#39;; import XYZ from &amp;#39;ol/source/XYZ&amp;#39;; import { Tile as TileLayer } from &amp;#39;ol/layer&amp;#39;; import { fromLonLat, transform } from &amp;#34;ol/proj&amp;#34;; import { Point</description>
+    </item>
+    
     <item>
       <title>openlayers系列之获取多边形中心点</title>
       <link>https://valiant-long.github.io/post/openlayers/getcenter/</link>
