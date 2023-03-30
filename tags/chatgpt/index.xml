@@ -6,7 +6,16 @@
     <description>Recent content in chatgpt on valiant的个人博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Wed, 29 Mar 2023 08:58:30 +0800</lastBuildDate><atom:link href="https://valiant-long.github.io/tags/chatgpt/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 30 Mar 2023 08:42:54 +0800</lastBuildDate><atom:link href="https://valiant-long.github.io/tags/chatgpt/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>使用Vercel托管平台搭建免费Chatgpt网站</title>
+      <link>https://valiant-long.github.io/post/chatgpt/vercel-chatgpt/</link>
+      <pubDate>Thu, 30 Mar 2023 08:42:54 +0800</pubDate>
+      
+      <guid>https://valiant-long.github.io/post/chatgpt/vercel-chatgpt/</guid>
+      <description>前言 需要有github账户，进行对开源项目进行Fork 需要有[魔法]上网 Fork chatgpt-vercel 到自己的github 打开网址：https://github.co</description>
+    </item>
+    
     <item>
       <title>ChatGPT之共享账号</title>
       <link>https://valiant-long.github.io/post/chatgpt/shareaccount/</link>
