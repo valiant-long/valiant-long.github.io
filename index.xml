@@ -6,7 +6,25 @@
     <description>Recent content on valiant的个人博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Thu, 30 Mar 2023 08:42:54 +0800</lastBuildDate><atom:link href="https://valiant-long.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 31 Mar 2023 09:10:45 +0800</lastBuildDate><atom:link href="https://valiant-long.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>国内chatgpt镜像站，国外chatgpt镜像站</title>
+      <link>https://valiant-long.github.io/post/chatgpt/weburl/</link>
+      <pubDate>Fri, 31 Mar 2023 09:10:45 +0800</pubDate>
+      
+      <guid>https://valiant-long.github.io/post/chatgpt/weburl/</guid>
+      <description>国内chatgpt镜像站 https://ai.bo-e.com/ 目前免费 http://gitopenchina.gitee.io/gpt 目前需要购买卡密 国外cahtgpt镜像站 你知道的需要[魔法]上网 https://chatbot.theb.ai 免费，稳定 https://freegpt.one/ 免费，不稳定 https://ai.ls/ 免费，稳定 https://chat5.xeasy.me/</description>
+    </item>
+    
+    <item>
+      <title>2023-03-31ChatGPT之共享账号</title>
+      <link>https://valiant-long.github.io/post/chatgpt/share0331/</link>
+      <pubDate>Fri, 31 Mar 2023 09:03:12 +0800</pubDate>
+      
+      <guid>https://valiant-long.github.io/post/chatgpt/share0331/</guid>
+      <description>前言 最近chatgpt比较火爆，但是因为某些原因。注册账号起来比较繁琐。把很大一批人拒之门外。不想注册账号的小伙伴们，可以通过我收集的共享账</description>
+    </item>
+    
     <item>
       <title>使用Vercel托管平台搭建免费Chatgpt网站</title>
       <link>https://valiant-long.github.io/post/chatgpt/vercel-chatgpt/</link>
