@@ -2,6 +2,27 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://valiant-long.github.io/post/chatgpt/share0401/</loc>
+    <lastmod>2023-04-01T09:02:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://valiant-long.github.io/post/</loc>
+    <lastmod>2023-04-01T09:02:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://valiant-long.github.io/</loc>
+    <lastmod>2023-04-01T09:02:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://valiant-long.github.io/tags/chatgpt/</loc>
     <lastmod>2023-03-31T09:10:45+08:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -9,21 +30,7 @@
   </url>
   
   <url>
-    <loc>https://valiant-long.github.io/post/</loc>
-    <lastmod>2023-03-31T09:10:45+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>https://valiant-long.github.io/tags/</loc>
-    <lastmod>2023-03-31T09:10:45+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://valiant-long.github.io/</loc>
     <lastmod>2023-03-31T09:10:45+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
