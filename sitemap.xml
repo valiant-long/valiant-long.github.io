@@ -2,21 +2,42 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://valiant-long.github.io/post/stock/replay0406/</loc>
-    <lastmod>2023-04-06T16:35:15+08:00</lastmod>
+    <loc>https://valiant-long.github.io/post/</loc>
+    <lastmod>2023-04-10T08:41:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://valiant-long.github.io/post/</loc>
-    <lastmod>2023-04-06T16:35:15+08:00</lastmod>
+    <loc>https://valiant-long.github.io/post/stock/replay0410/</loc>
+    <lastmod>2023-04-10T08:41:53+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://valiant-long.github.io/tags/</loc>
+    <lastmod>2023-04-10T08:41:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://valiant-long.github.io/</loc>
+    <lastmod>2023-04-10T08:41:53+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://valiant-long.github.io/tags/%E6%8A%95%E8%B5%84%E5%A4%8D%E7%9B%98/</loc>
+    <lastmod>2023-04-10T08:41:53+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://valiant-long.github.io/post/stock/replay0406/</loc>
     <lastmod>2023-04-06T16:35:15+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -44,21 +65,7 @@
   </url>
   
   <url>
-    <loc>https://valiant-long.github.io/tags/</loc>
-    <lastmod>2023-04-04T08:56:22+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>https://valiant-long.github.io/post/stock/replay/</loc>
-    <lastmod>2023-04-03T10:10:22+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://valiant-long.github.io/tags/%E6%8A%95%E8%B5%84%E5%A4%8D%E7%9B%98/</loc>
     <lastmod>2023-04-03T10:10:22+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
