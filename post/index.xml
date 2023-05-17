@@ -6,7 +6,16 @@
     <description>Recent content in Posts on valiant的个人博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Wed, 10 May 2023 09:14:02 +0800</lastBuildDate><atom:link href="https://valiant-long.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 17 May 2023 13:40:28 +0800</lastBuildDate><atom:link href="https://valiant-long.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>vue2和electron构建应用</title>
+      <link>https://valiant-long.github.io/post/electron/step1/</link>
+      <pubDate>Wed, 17 May 2023 13:40:28 +0800</pubDate>
+      
+      <guid>https://valiant-long.github.io/post/electron/step1/</guid>
+      <description>前提 node 环境 vue 脚手架 搭建vue项目 我的vue脚手架 2.9.5 1 vue init webpack 项目名称 一路next 创建成功 命令行进入到项目目录 1 cd 项目名称 运行项目 1 npm run dev 配置 electron</description>
+    </item>
+    
     <item>
       <title>2023-05-10股票早盘复</title>
       <link>https://valiant-long.github.io/post/stock/replay0510/</link>

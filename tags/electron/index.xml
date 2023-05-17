@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>electron on valiant的个人博客</title>
+    <link>https://valiant-long.github.io/tags/electron/</link>
+    <description>Recent content in electron on valiant的个人博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Wed, 17 May 2023 13:40:28 +0800</lastBuildDate><atom:link href="https://valiant-long.github.io/tags/electron/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>vue2和electron构建应用</title>
+      <link>https://valiant-long.github.io/post/electron/step1/</link>
+      <pubDate>Wed, 17 May 2023 13:40:28 +0800</pubDate>
+      
+      <guid>https://valiant-long.github.io/post/electron/step1/</guid>
+      <description>前提 node 环境 vue 脚手架 搭建vue项目 我的vue脚手架 2.9.5 1 vue init webpack 项目名称 一路next 创建成功 命令行进入到项目目录 1 cd 项目名称 运行项目 1 npm run dev 配置 electron</description>
+    </item>
+    
+  </channel>
+</rss>
