@@ -6,7 +6,16 @@
     <description>Recent content on valiant的个人博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Wed, 17 May 2023 13:40:28 +0800</lastBuildDate><atom:link href="https://valiant-long.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 17 May 2023 17:35:35 +0800</lastBuildDate><atom:link href="https://valiant-long.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>electron使用Web Serial API 串口通信</title>
+      <link>https://valiant-long.github.io/post/electron/step2/</link>
+      <pubDate>Wed, 17 May 2023 17:35:35 +0800</pubDate>
+      
+      <guid>https://valiant-long.github.io/post/electron/step2/</guid>
+      <description>前言 记上一篇文章[vue2和electron构建应用] background.js 添加如下代码 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36</description>
+    </item>
+    
     <item>
       <title>vue2和electron构建应用</title>
       <link>https://valiant-long.github.io/post/electron/step1/</link>
